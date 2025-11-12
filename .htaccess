@@ -1,0 +1,10 @@
+# Segurança - esconder .env
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# PHP Settings
+php_flag display_errors On
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
