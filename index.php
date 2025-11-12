@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Load dependencies
+// Load dependencies 444444
 require_once 'includes/config.php';
 require_once 'includes/database.php';
 require_once 'includes/claude_api.php';

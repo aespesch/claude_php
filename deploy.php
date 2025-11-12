@@ -1,6 +1,4 @@
 <?php
-// Teste para ver se o deploy está funcionando
-
 // Carrega as variáveis de ambiente do arquivo .env
 function loadEnv($path) {
     if (!file_exists($path)) {
@@ -37,16 +35,22 @@ if (!$token || $token !== $secret) {
     die('Acesso negado');
 }
 
-// Caminho para o repositório
-$repo_dir = __DIR__ . '/claude';
+// O repositório está na pasta ATUAL (não em /claude)
+$repo_dir = __DIR__;
 
 // Executa git pull
 $output = shell_exec("cd $repo_dir && git pull origin main 2>&1");
 
-// Log
-file_put_contents(__DIR__ . '/deploy.log', date('Y-m-d H:i:s') . "\n" . $output . "\n\n", FILE_APPEND);
+// Log detalhado
+$log_content = date('Y-m-d H:i:s') . "\n";
+$log_content .= "Diretório: $repo_dir\n";
+$log_content .= "Output:\n$output\n";
+$log_content .= str_repeat('-', 50) . "\n\n";
+
+file_put_contents(__DIR__ . '/deploy.log', $log_content, FILE_APPEND);
 
 http_response_code(200);
 echo "Deploy realizado com sucesso!\n";
+echo "Diretório: $repo_dir\n";
 echo $output;
 ?>
