@@ -1,1 +1,1 @@
-<< TESTE >>
+Interface PHP para o Claude
