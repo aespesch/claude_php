@@ -1,1 +1,1 @@
-Teste de publicação automática 5
+<< TESTE >>

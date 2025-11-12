@@ -1,4 +1,5 @@
 <?php
+// teste
 // Carrega as variáveis de ambiente do arquivo .env
 function loadEnv($path) {
     if (!file_exists($path)) {
