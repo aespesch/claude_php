@@ -1,14 +1,15 @@
 <?php
-// teste
 // Carrega as variáveis de ambiente do arquivo .env
 function loadEnv($path) {
     if (!file_exists($path)) {
+        http_response_code(500);
         die('Arquivo .env não encontrado');
     }
 
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
         if (strpos(trim($line), '#') === 0) continue;
+        if (strpos($line, '=') === false) continue;
 
         list($name, $value) = explode('=', $line, 2);
         $name = trim($name);
@@ -25,7 +26,7 @@ $secret = getenv('github') ?: $_ENV['github'] ?? null;
 
 if (!$secret) {
     http_response_code(500);
-    die('Token não configurado');
+    die('Token não configurado no .env');
 }
 
 // Aceita tanto GET quanto POST
@@ -51,6 +52,7 @@ $log_content .= str_repeat('-', 50) . "\n\n";
 file_put_contents(__DIR__ . '/deploy.log', $log_content, FILE_APPEND);
 
 http_response_code(200);
+header('Content-Type: text/plain');
 echo "Deploy realizado com sucesso!\n";
 echo "Diretório: $repo_dir\n";
 echo $output;
