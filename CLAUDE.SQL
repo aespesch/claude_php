@@ -1,4 +1,4 @@
--- Teste de publicação automática 2
+-- Teste de publicação automática 3
 -- conversation
 CREATE TABLE conversation (
     cnvr_id INT PRIMARY KEY AUTO_INCREMENT,
