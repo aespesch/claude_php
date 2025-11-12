@@ -35,7 +35,7 @@ if (!$token || $token !== $secret) {
     die('Acesso negado');
 }
 
-// O repositório está na pasta ATUAL (não em /claude)
+// O repositório está na pasta ATUAL
 $repo_dir = __DIR__;
 
 // Executa git pull
